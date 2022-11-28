@@ -24,13 +24,29 @@ route.post("/", (req, res) => {
 route.put("/:id", (req, res) => {
     const change = req.body;
     const updateBook = service.update(id, change);
-    res.status(201).json(updateBook); // investigar status
+    res.status(204).json(updateBook); // investigar status
   });
 
   route.delete("/:id", (req, res) => {
+    const {id} = req.params;
     const deleteBook = service.delete(id);
-    res.status(201).json(deleteBook);  // investigar status
+    res.status(202).json(deleteBook);  // investigar status
   });
 
+  route.put('/:id', (req, res)=>{
+    const {id} = req.params;
+    const {name, precio} = req.body;
+    if(name && precio){
+      _.each(books, (book, i)=>{
+        if(book.id == id){
+          book.name = name;
+          book.precio = precio;
+        }
+      });
+      res.json(books);
+    }else{
+      res.status(500).json({error: 'ERRORRRRR'})
+    }
+  })
 
 module.exports = route;

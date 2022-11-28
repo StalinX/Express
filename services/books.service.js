@@ -32,9 +32,14 @@ class BooksService {
   }
 
   delete(id){
-    const index = this.books.findIndex(bk => bk.id == id);
-    //manera de eliminar
+  const index = this.books.findIndex(bk => bk.id == id)
+  return {
+      message: "deleted",
+    }
   }
+
+
+ro
 
   update(id, change){
 

@@ -1,4 +1,5 @@
 const { faker } = require("@faker-js/faker");
+const _ = require('underscore')
 
 class BooksService {
   constructor() {
@@ -38,18 +39,16 @@ class BooksService {
     }
   }
 
-  update(id, change){
-    const {name, precio} = req.body;
-    if(name && precio){
-      _.each(books, (book, i)=>{
-        if(book.id == id){
-          book.name = name;
-          book.precio = precio;
+  update(id, data){
+    //const {name, precio} = req.body;
+    if(data.name && data.precio){
+      _.each(books, (books, i)=>{
+        if(this.books.id == id){
+          //this.books.name = name;
+          this.books.precio = precio;
         }
       });
       res.json(books);
-    }else{
-      res.status(500).json({error: 'ERRORRRRR'})
     }
   }
 }

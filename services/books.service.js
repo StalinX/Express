@@ -38,11 +38,19 @@ class BooksService {
     }
   }
 
-
-ro
-
   update(id, change){
-
+    const {name, precio} = req.body;
+    if(name && precio){
+      _.each(books, (book, i)=>{
+        if(book.id == id){
+          book.name = name;
+          book.precio = precio;
+        }
+      });
+      res.json(books);
+    }else{
+      res.status(500).json({error: 'ERRORRRRR'})
+    }
   }
 }
 

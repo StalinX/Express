@@ -32,23 +32,29 @@ class BooksService {
     };
   }
 
+
+
+
   delete(id){
-  const index = this.books.findIndex(bk => bk.id == id)
+    const index = this.books.findIndex(bk => bk.id == id)
+    delete this.books[index];
+    this.books = this.books.filter(book => !!book)
+    console.log(this.books)
   return {
       message: "deleted",
     }
   }
 
+
   update(id, data){
-    //const {name, precio} = req.body;
-    if(data.name && data.precio){
-      _.each(books, (books, i)=>{
-        if(this.books.id == id){
-          //this.books.name = name;
-          this.books.precio = precio;
-        }
-      });
-      res.json(books);
+    const {name, precio} = data;
+    const index = this.books.findIndex(bk => bk.id == id)
+    this.books[index].name = name;
+    this.books[index].precio = precio;
+    console.log(data)
+    return {
+      message: 'updated',
+      data: name, precio, id
     }
   }
 }

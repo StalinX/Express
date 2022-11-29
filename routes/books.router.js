@@ -25,7 +25,7 @@ route.put("/:id", (req, res) => {
     const {id} = req.params;
     const change = req.body;
     const updateBook = service.update(id, change);
-    res.status(204).json(updateBook); // investigar status
+    res.status(202).json(updateBook); // investigar status
   });
 
   route.delete("/:id", (req, res) => {
